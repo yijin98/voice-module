@@ -1,0 +1,26 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar 
+ */
+
+grammar grammar;
+
+public <answer> = ( execute command | confirm command | clear command list | program pause | program resume);
+public <modify> = <modify1> <number>;
+public <command> = ( open gripper | close gripper | align screw tip with hole | insert screw tip inside hole 
+				| move screw tip above hole to see the screw tip | grasp leg | program exit | move gripper above leg to see the leg 
+				| lasso done | lasso clear | rotate leg | low speed | normal speed | high speed );
+public <compCmd> = <action> <cmdDetail> (<moreCmdDetail>) *;
+<modify1> = ( change command | delete command | correction argument | replace with);
+<number> = ( zero ) | <others> | <ones> | ( <tens> [ <ones> ]);
+<ones> = ( one | two | three | four | five | six | seven | nine );
+<others> = ( ten | eleven | twelve | thirteen | fourteen | fifteen | sixteen | seventeen | eighteen | nineteen);
+<tens> = ( twenty | thirty | forty | fifty | sixty | seventy | eighty | ninety);
+<cmdDetail> = <number> <unit> <pos> <object>;
+<moreCmdDetail> = ( and ) <cmdDetail>;
+<action> = ( move gripper | locate leg | rotate move gripper);
+<unit> = ( centimeters );
+<pos> = ( above | below | on the left of | on the right of | in front of | behind | counterclockwise);
+<object1> = ( marker );
+<object> = ( current pose | <object1> <ones>);
